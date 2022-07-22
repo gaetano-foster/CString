@@ -36,17 +36,17 @@ CString* CString_Move(CString *other) {
     return new;
 }
 
-CString* CString_FromCat(CString str1, CString str2) {
+CString* CString_FromCat(CString *str1, CString *str2) {
     CString *new = malloc(sizeof(CString));
-    new->m_buf = malloc((str1.length+str2.length+1)*sizeof(char));
-    new->length = str1.length+str2.length;
+    new->m_buf = malloc((str1->length+str2->length+1)*sizeof(char));
+    new->length = str1->length+str2->length;
 
-    for (int i = 0; i < str1.length; i++) {
-        new->m_buf[i] = str1.m_buf[i];
+    for (int i = 0; i < str1->length; i++) {
+        new->m_buf[i] = str1->m_buf[i];
     }
 
-    for (int i = str1.length; i < new->length; i++) {
-        new->m_buf[i] = str2.m_buf[i-str1.length];
+    for (int i = str1->length; i < new->length; i++) {
+        new->m_buf[i] = str2->m_buf[i-str1->length];
     }
     new->m_buf[new->length] = '\0';
     CString_InstancePushBack(new);

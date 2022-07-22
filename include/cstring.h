@@ -18,7 +18,7 @@ CString* CString_New(const char *buffer, size_t length);
 CString* CString_Infer(const char *buffer); // same as CString_New but uses strlen internally, making it less safe
 CString* CString_Copy(CString *other);
 CString* CString_Move(CString *other);
-CString* CString_FromCat(CString str1, CString str2); // dest + src (creates new string that needs to be freed)
+CString* CString_FromCat(CString *str1, CString *str2); // dest + src (creates new string that needs to be freed)
 CString* CString_SubString(size_t start, size_t end, const CString *str);
 
 void CString_Free(CString *str);
