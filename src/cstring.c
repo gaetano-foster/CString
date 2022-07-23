@@ -45,7 +45,7 @@ CString* CString_FromCat(CString *str1, CString *str2) {
         new->m_buf[i] = str1->m_buf[i];
     }
 
-    for (int i = str1->length; i < new->length; i++) {
+    for (int i = str1->length; i < (new->length+1); i++) {
         new->m_buf[i] = str2->m_buf[i-str1->length];
     }
     new->m_buf[new->length] = '\0';
@@ -76,6 +76,30 @@ CString* CString_SubString(size_t start, size_t end, const CString *str) {
     CString_InstancePushBack(new);
 
     return new;
+}
+
+CString* CString_FromInt(int value) {
+    char buf[30];
+    sprintf(buf, "%d", value);
+    return CString_Infer(buf);
+}
+
+CString* CString_FromFraction(double value) {
+    char buf[30];
+    sprintf(buf, "%f", value);
+    return CString_Infer(buf);
+}
+
+CString* CString_FromHex(int value) {
+    char buf[30];
+    sprintf(buf, "0x%x", value);
+    return CString_Infer(buf);
+}
+
+CString* CString_FromOctal(int value) {
+    char buf[30];
+    sprintf(buf, "0%o", value);
+    return CString_Infer(buf);
 }
 
 void CString_Append(CString *dest, CString *src) {

@@ -20,6 +20,10 @@ CString* CString_Copy(CString *other);
 CString* CString_Move(CString *other);
 CString* CString_FromCat(CString *str1, CString *str2); // dest + src (creates new string that needs to be freed)
 CString* CString_SubString(size_t start, size_t end, const CString *str);
+CString* CString_FromInt(int value);
+CString* CString_FromFraction(double value);
+CString* CString_FromHex(int value);
+CString* CString_FromOctal(int value);
 
 void CString_Free(CString *str);
 void CString_Append(CString *dest, CString *src); // dest += src
