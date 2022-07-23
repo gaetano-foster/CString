@@ -24,11 +24,11 @@ int main() {
   CString_InitInstanceCounter(); // enable automatic memory management of CStrings
   CString *str = CSTR(Hello, World!); // Creates new CString with value "Hello, World!" and length of 13
   CString *str1 = CString_SubString(0, 5, str); // Creates new string from first 5 elements of str, or "Hello"
-  CString *str2 = CString_FromCat(str1, CSTR( Mom!)); // Creates 2 new strings: the one returned from
-                                                      // CString_FromCat, and the one returned from CSTR
-                                                      // don't worry, any string allocated with CSTR macro
-                                                      // will be automatically freed when CString_DestroyInstances
-                                                      // is called, even when not assigned to a variable.
+  CString *str2 = CString_FromCat(str1, CSTR(, Mom!)); // Creates 2 new strings: the one returned from
+                                                       // CString_FromCat, and the one returned from CSTR
+                                                       // don't worry, any string allocated with CSTR macro
+                                                       // will be automatically freed when CString_DestroyInstances
+                                                       // is called, even when not assigned to a variable.
   CString_PrintLine(str);
   CString_PrintLine(str1);
   CString_PrintLine(str2);
@@ -39,5 +39,5 @@ int main() {
 // Expected Output:
 // Hello, World!
 // Hello
-// Hello Mom!
+// Hello, Mom!
 ```
