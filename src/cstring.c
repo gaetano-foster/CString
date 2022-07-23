@@ -102,6 +102,38 @@ CString* CString_FromOctal(int value) {
     return CString_Infer(buf);
 }
 
+CString** CString_Tokenize(CString *src, CString *sep, int *elements) {
+    if (sep->length >= src->length) // what are you doing?
+        return NULL;
+    size_t array_size = 1;
+    int begin = 0;
+    int index = 0;
+    CString **array = malloc(array_size*sizeof(CString*));
+    for (int i = 0; i < src->length - sep->length; i++) {
+        if (i == src->length - sep->length - 1) {
+            array[index] = CString_SubString(begin, src->length, src);
+            index++;
+            begin = i + sep->length;
+            if (index >= array_size) {
+                array_size *= 2;
+                array = realloc(array, array_size*sizeof(CString*));
+            }
+        }
+
+        if (CString_Equals(CString_SubString(i, i+sep->length, src), sep)) {
+            array[index] = CString_SubString(begin, i, src);
+            index++;
+            begin = i + sep->length;
+            if (index >= array_size) {
+                array_size *= 2;
+                array = realloc(array, array_size*sizeof(CString*));
+            }
+        }
+    }
+    *elements = index;
+    return array;
+}
+
 void CString_Append(CString *dest, CString *src) {
     size_t length_new = dest->length + src->length;
     dest->m_buf = realloc(dest->m_buf, (length_new+1)*sizeof(char));

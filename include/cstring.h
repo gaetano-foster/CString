@@ -18,13 +18,14 @@ CString* CString_New(const char *buffer, size_t length);
 CString* CString_Infer(const char *buffer); // same as CString_New but uses strlen internally, making it less safe
 CString* CString_Copy(CString *other);
 CString* CString_Move(CString *other);
-CString* CString_FromCat(CString *str1, CString *str2); // dest + src (creates new string that needs to be freed)
+CString* CString_FromCat(CString *str1, CString *str2); // dest + src (creates new string that must be freed manually)
 CString* CString_SubString(size_t start, size_t end, const CString *str);
 CString* CString_FromInt(int value);
 CString* CString_FromFraction(double value);
 CString* CString_FromHex(int value);
 CString* CString_FromOctal(int value);
 
+CString** CString_Tokenize(CString *src, CString *seperator, int *elements); // returns an array of strings that must be freed manually using free()
 void CString_Free(CString *str);
 void CString_Append(CString *dest, CString *src); // dest += src
 int CString_Equals(CString *str1, CString *str2);
