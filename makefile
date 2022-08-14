@@ -1,5 +1,5 @@
 RM := rm -vf
-CC := clang
+CC := gcc
 CFLAGS := -Wall -O3 -std=c17
 SOURCE := src/cstring.c src/allocator.c
 INCLUDE := -I./src/ -I./include/
