@@ -1,25 +1,25 @@
-**CString (C String Manipulation Library)**
+# CString (C String Manipulation Library)
 
 ---
 
-**Overview**
+## Overview
 CString is a utility library that provides a safer, higher-level abstraction over raw C strings. It simplifies string manipulation, memory management, and comparison operations in C.
 
-**Features**
+## Features
 
 * Easy string creation via macros
 * String concatenation, slicing, and comparison
 * Memory-safe: automatic cleanup via reference tracking
 * Custom allocators for advanced use cases
 
-**Requirements**
+## Requirements
 
 * clang or compatible C compiler
 
-**Compilation**
+## Compilation
 Run `make` in the root directory to build the library.
 
-**Example Usage**
+## Example Usage:
 
 ```c
 #include "cstring.h"
