@@ -1,43 +1,44 @@
-# CString
-## What is CString?
-A library/wrapper around strings for C that allows easy string manipulation. Working with strings is often regarded as
-a chore in C, and an unsafe one at that. This should help to ease some of the pain.
-## Features
-* Easy string concatenation functions.
-* Easy string comparison.
-* Macro for generating CStrings.
-* Many ways to allocate new strings, including by copying and moving strings.
-* No need to explicitly free CStrings (You still have the option to if you want)
-* As well as other features.
-More features should be coming soon.
-## Compiling
-### Prerequisites
-You need clang installed on your computer.
-### How to Compile
-Type "make" in the terminal to compile the library.
-## How to Use
-Below is an example program which demonstrates most of the things the library can do:
+**CString (C String Manipulation Library)**
+
+---
+
+**Overview**
+CString is a utility library that provides a safer, higher-level abstraction over raw C strings. It simplifies string manipulation, memory management, and comparison operations in C.
+
+**Features**
+
+* Easy string creation via macros
+* String concatenation, slicing, and comparison
+* Memory-safe: automatic cleanup via reference tracking
+* Custom allocators for advanced use cases
+
+**Requirements**
+
+* clang or compatible C compiler
+
+**Compilation**
+Run `make` in the root directory to build the library.
+
+**Example Usage**
+
 ```c
 #include "cstring.h"
 
 int main() {
-  CString_InitInstanceCounter(); // enable automatic memory management of CStrings
-  CString *str = CSTR(Hello, World!); // Creates new CString with value "Hello, World!" and length of 13
-  CString *str1 = CString_SubString(0, 5, str); // Creates new string from first 5 elements of str, or "Hello"
-  CString *str2 = CString_FromCat(str1, CSTR(, Mom!)); // Creates 2 new strings: the one returned from
-                                                       // CString_FromCat, and the one returned from CSTR
-                                                       // don't worry, any string allocated with CSTR macro
-                                                       // will be automatically freed when CString_DestroyInstances
-                                                       // is called, even when not assigned to a variable.
-  CString_PrintLine(str);
-  CString_PrintLine(str1);
-  CString_PrintLine(str2);
-  CString_DestroyInstances(); // free all memory allocated for strings that 
-                              // has not been freed yet
+  CString_InitInstanceCounter();
+  CString *str = CSTR(Hello, World!);
+  CString *str1 = CString_SubString(0, 5, str);
+  CString *str2 = CString_FromCat(str1, CSTR(, Mom!));
+
+  CString_PrintLine(str);     // Hello, World!
+  CString_PrintLine(str1);    // Hello
+  CString_PrintLine(str2);    // Hello, Mom!
+
+  CString_DestroyInstances();
   return 0;
 }
-// Expected Output:
-// Hello, World!
-// Hello
-// Hello, Mom!
 ```
+
+**Notes**
+
+* Strings allocated via `CSTR` are automatically managed unless explicitly freed.
